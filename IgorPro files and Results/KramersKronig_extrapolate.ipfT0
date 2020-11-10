@@ -1,0 +1,563 @@
+#pragma rtGlobals=3		// Use modern global access method and strict wave access.
+
+
+//This function does the Kramers-Kronig transform including extrapolation of the data at both ends
+//the inputwave is the one to transform, the xdat wave, which includes the energy scaling is extrapolated with an uniform scaling
+function KKtransform_extrapolated(inputwave, xdat)
+
+	wave inputwave, xdat 	//wave to transform and energy axis scaling
+	String newName = NameOfWave(inputwave) + "_KK" // Compute output wave name
+	Duplicate/O inputwave, $newName // Create output wave
+	Wave inputwave = $newName // Create wave reference for output wave
+
+	Duplicate/O inputwave, outwave
+	outwave[] = 0
+	
+	Variable i, j, k, delx, temp, start, stop, eps = 1e-8
+	delx = xdat[1] - xdat[0]
+	//start = DateTime
+	//Fitting data off range-------------------
+	Variable length,length1,length2
+	length1 = ceil(xdat[0]/delx)		// length of inputwave extension to zero
+	length2 = 30000
+	length = length1 + length2
+	Make/O /N=4 right_fit_coef 	//right fit is sigmoid and left is lorentzian
+	Make/O /N=4 left_fit_coef 
+	
+	Make/O /N=(dimsize(inputwave,0)+length) inwave, xdata 	 //resized input wave and energy data wave
+	
+	CurveFit lor kwCWave=left_fit_coef,  inputwave[0,50] /X=xdat 
+	Variable x0 = xdat[0]
+	for(k=0;k<length1;k+=1)
+		xdata[k] = k*delx
+		inwave[k] = left_fit_coef[0] + left_fit_coef[1]/((xdata[k] - left_fit_coef[2])^2+left_fit_coef[3] )
+	endfor
+	Curvefit Sigmoid, kwCWave = right_fit_coef, inputwave[dimsize(inputwave,0)-29,dimsize(inputwave,0)] /X=xdat 
+	for(k=length1+dimsize(xdat,0);k<dimsize(inwave,0);k+=1)
+		xdata[k] = xdat[dimsize(xdat,0)-1] + (k+1-length1-dimsize(xdat,0))*delx
+		inwave[k] = right_fit_coef[0] + right_fit_coef[1]/(1+exp( (right_fit_coef[2]-xdata[k])/right_fit_coef[3] ) )	
+	endfor
+	for(k=length1; k<length1+dimsize(inputwave,0);k+=1)
+		inwave[k] = inputwave[k - length1]
+		xdata[k] = xdat[k-length1]
+	endfor
+	//Interpolation-----------------------------
+	//make/O/N=(2*dimsize(inwave,0))  dummy, xdata2
+	//interpolate2 /F=1 /N=(2*dimsize(inwave,0)) /Y = dummy inwave
+	//interpolate2 /F=1 /N=(2*dimsize(inwave,0)) /X = xdata2 xdata
+	//Redimension/N=(2*dimsize(inwave,0)) inwave, xdata
+	//inwave[] = dummy[p]
+	//xdata[] = xdata2[p]
+	//killwaves/z dummy, xdata2
+	//----------------------------------------------
+	//KKtrasform
+	for(i=length1; i < length1 + dimsize(inputwave,0); i+=1)
+		temp = 0
+		//Cauchy principal value
+		for(j=1;j < dimsize(inwave,0); j+=1)
+			if( abs(xdata[i] - xdata[j]) > eps)
+				delx = xdata[j] - xdata[j-1]
+				temp += (xdata[j]*inwave[j]/(xdata[j]^2 - xdata[i]^2))*delx //rectangular integration
+				// for use traezoid integration add anothe condition xdat[j-1]!=xdat[i]
+				//temp +=0.5*( xdata[j]*inwave[j]/(xdata[j]^2 - xdata[i]^2) + xdata[j-1]*inwave[j-1]/(xdata[j-1]^2 - xdata[i]^2) )*delx //trapezoidal integration
+			endif
+		endfor
+		outwave[i-length1] = 1+2/pi*temp
+	endfor
+	inputwave[] = outwave[p]
+	killwaves/z outwave, inwave, right_fit_coef, left_fit_coef, xdata,W_sigma,W_fitConstants
+	//stop = DateTime
+	//print "Execution time: " + num2str(stop - start) +" seconds"
+	
+end function
+
+
+
+function IKKtransform_extrapolated(inputwave, energy)
+
+	wave inputwave, energy 	//wave to transform and energy axis scaling
+	String newName = NameOfWave(inputwave) + "_KK" // Compute output wave name
+	Duplicate/O inputwave, $newName // Create output wave
+	Wave inputwave = $newName // Create wave reference for output wave
+	
+	Duplicate/O inputwave, outwave, xdat
+	outwave[] = 0
+	interpolate2/F=1 /N=(dimsize(inputwave,0)) /Y = xdat energy
+	
+	Variable i, j, k, delx, temp, start, stop, eps =1e-8
+	delx = xdat[1] - xdat[0]
+	start = DateTime
+	//Fitting data off range-------------------
+	Variable length,length1,length2
+	length1 = ceil(xdat[0]/delx)		// length of inputwave extension to zero
+	length2 = 10000
+	length = length1 + length2	
+	Make/O /N=3 right_fit_coef 	//right fit is exponential decay and left is Hillequation
+	Make/O /N=4 left_fit_coef 
+	
+	Make/O /N=(dimsize(inputwave,0)+length) inwave, xdata 	 //resized input wave and energy data wave
+	
+	CurveFit/NTHR=0 HillEquation kwCWave=left_fit_coef,  inputwave[0,50] /X=xdat 
+	for(k=0;k<length;k+=1)
+		xdata[k] = k*delx
+		inwave[k] = left_fit_coef[0] + (left_fit_coef[1]-left_fit_coef[0])/(1+(left_fit_coef[3]/xdata[k])^left_fit_coef[2])		
+	endfor
+	
+	Curvefit/NTHR=0 exp_XOffset, kwCWave = right_fit_coef, inputwave[dimsize(xdat,0)-29,dimsize(xdat,0)] /X=xdat 
+	Variable x0 = xdat[dimsize(inputwave,0)-29]
+	for(k=length1+dimsize(xdat,0);k<dimsize(inwave,0);k+=1)
+		xdata[k] = xdat[dimsize(xdat,0)-1] + (k+1-length1-dimsize(xdat,0))*delx
+		inwave[k] = right_fit_coef[0] + right_fit_coef[1]*exp(-(xdata[k] - x0)/right_fit_coef[2] )
+	endfor
+	for(k=length1; k<length1+dimsize(xdat,0);k+=1)
+		inwave[k] = inputwave[k - length1]
+		xdata[k] = xdat[k-length1]
+	endfor
+	//Interpolation-----------------------------
+	//make/O/N=(2*dimsize(inwave,0))  dummy, xdata2
+	//interpolate2 /F=1 /N=(2*dimsize(inwave,0)) /Y = dummy inwave
+	//interpolate2 /F=1 /N=(2*dimsize(inwave,0)) /X = xdata2 xdata
+	//Redimension/N=(2*dimsize(inwave,0)) inwave, xdata
+	//inwave[] = dummy[p]
+	//xdata[] = xdata2[p]
+	//killwaves/z dummy, xdata2
+	//----------------------------------------------
+	//----------------------------------------------
+	//KKtrasform
+	for(i=length1; i < length1 + dimsize(inputwave,0); i+=1)
+		temp = 0
+		//Cauchy principal value
+		for(j=1;j < dimsize(inwave,0); j+=1)
+			if( abs(xdata[i] - xdata[j]) > eps)
+				delx = xdata[j] - xdata[j-1]
+				temp += ((xdata[i]*inwave[j]-1)/(xdata[j]^2 - xdata[i]^2))*delx  //rectangular integration
+			endif
+		endfor
+		outwave[i-length1] =  -2/pi*temp 
+	endfor
+	inputwave[] = outwave[p]
+	killwaves/z outwave, inwave, right_fit_coef, left_fit_coef, xdata, ,W_sigma,W_fitConstants
+	stop = DateTime
+	print "Execution time: " + num2str(stop - start) +" seconds"
+	
+end function
+
+
+
+function linearize_to1(inwave,E1,E2,var)
+	wave inwave
+	variable E1, E2, var
+	Duplicate/O inwave, xdat
+	variable i	
+	for(i=0;i<dimsize(inwave,0);i+=1)
+		xdat[i] = E1 + (E2-E1)/(dimsize(inwave,0)-1)*i
+	endfor
+	Duplicate/O inwave, inwave_line
+	Curvefit line inwave /X=xdat /D=inwave_line
+	variable sth = inwave[0]
+	inwave[] = inwave[p]-inwave_line[p]+var
+	killwaves/z  xdat, inwave_line
+end function
+
+
+Function Eps12(wavetotransform,energy)
+	
+	Wave wavetotransform, energy// Reference to the input wave received as parameter
+	
+	String thetaName = NameOfWave( wavetotransform) + "_theta" // Compute output wave name
+	Duplicate/O wavetotransform, $thetaName // Create output wave
+	Wave/c thetawave = $thetaName // Create wave reference for output wave
+	redimension/c $thetaName
+	
+
+	String rName = NameOfWave( wavetotransform) + "_r" // Compute output wave name
+	Duplicate/O wavetotransform, $rName // Create output wave
+	Wave/c rwave = $rName // Create wave reference for output wave
+	redimension/c $rName
+
+	String eps1Name = NameOfWave( wavetotransform) + "_eps1" // Compute output wave name
+	Duplicate/O wavetotransform, $eps1Name // Create output wave
+	Wave eps1wave = $eps1Name // Create wave reference for output wave
+	
+	String eps2Name = NameOfWave( wavetotransform) + "_eps2" // Compute output wave name
+	Duplicate/O wavetotransform, $eps2Name // Create output wave
+	Wave eps2wave = $eps2Name // Create wave reference for output wave
+	
+	String ref1Name = NameOfWave( wavetotransform) + "_ref1" // Compute output wave name
+	Duplicate/O wavetotransform, $ref1Name // Create output wave
+	Wave ref1wave = $ref1Name // Create wave reference for output wave
+	
+	String ref2Name = NameOfWave( wavetotransform) + "_ref2" // Compute output wave name
+	Duplicate/O wavetotransform, $ref2Name // Create output wave
+	Wave ref2wave = $ref2Name // Create wave reference for output wave
+
+	//Duplicate/O wavetotransform, dummy
+
+	thetawave[]=cmplx(0.6,0)
+	rwave[]=cmplx(0,0)
+	eps1wave[]=0
+	eps2wave[]=0
+	
+	variable i, k, delx
+	
+	for(k=0;k<Dimsize(wavetotransform,0);k+=1)
+		for(i=1;i<dimsize(energy,0);i+=1)
+			if(abs(energy[i]-energy[k])>0.000001)
+				delx = energy[i] - energy[i-1]
+				//check this formula!
+				thetawave[k]+=-2*energy[k]/pi*ln(  sqrt(  wavetotransform[i]  ))/((energy[i])^2-(energy[k])^2)*delx
+			endif
+		endfor
+	endfor
+	
+	//here you can play with the sign: -1 and +1 give totally different results
+	thetawave[]*=-1
+	rwave[0,dimsize(energy,0)-1]=sqrt(wavetotransform[p])*exp(cmplx(0,1)*thetawave[p])
+	
+	eps1wave[]=real((1-rwave[p])^2 / (1+rwave[p])^2)
+	eps2wave[]=imag((1-rwave[p])^2 / (1+rwave[p])^2)
+	ref1wave[] = sqrt( 0.5*( sqrt(eps1wave[p]^2+eps2wave[p]^2) + eps1wave[p]) )
+	ref2wave[] = sqrt( 0.5*( sqrt(eps1wave[p]^2+eps2wave[p]^2) - eps1wave[p]) )
+	
+End
+
+
+function RotatebyAngle2D(theta, inwave)
+//This function rotates a wave counterclockwise by an angle theta
+	wave inwave
+	variable theta
+	Duplicate/O inwave, dumm
+	Make/O/N=(2,2) RotationMatrix
+	RotationMatrix[0][0] = cos(theta)
+	RotationMatrix[1][0] = -sin(theta)
+	RotationMatrix[0][1] = sin(theta)
+	RotationMatrix[1][1] = cos(theta)
+	Variable i, j
+	for(i=0;i<2;i+=1)
+		for(j=0;j<2;j+=1)
+			dumm[i] = RotationMatrix[i][j]*inwave[j]
+		endfor
+	endfor
+	inwave[] = dumm[p]
+	killwaves/z dumm, RotationMatrix
+	return inwave
+end function
+
+
+function OpticalCondExtract_nonMagn()
+	variable i, j, k
+	setdatafolder("root:")
+	variable num = (968-926.65)/(0.15)+1
+	string filename
+	Make/O/N=(num) omega
+	omega[] = 926.65 + p*0.15
+	Make/O/N=(num,2) tey
+	Make/O/N=(num) ang1, ang2
+	
+		filename = "Fit_"+num2str(960)+"to"+num2str(1300)+"_abs" //LV polarisation
+		wave joe = $filename		
+		tey[][0] = joe[x2pnt(joe,omega[p])]
+		//filename = "ScatAng"+num2str(960)+"to"+num2str(1300)
+		//wave angles = $filename
+		//ang1[] = angles[x2pnt(joe,omega[p])]
+		
+		filename = "Fit_"+num2str(1713)+"to"+num2str(2044)+"_abs" //LH polarisation
+		wave joe = $filename
+		tey[][1] = joe[x2pnt(joe,omega[p])]
+		filename = "ScatAng"+num2str(1713)+"to"+num2str(2044)
+		wave angles = $filename
+		ang2[] = angles[x2pnt(angles,omega[p])]
+		ang2[] *= pi/180
+	filename = "ImSigma"
+	filename += "_xx"
+	Duplicate/O ang1, $filename
+	wave sxx = $filename
+	filename = "ImSigma_zz"
+	Duplicate/O ang1, $filename
+	wave szz = $filename
+	sxx[] = -tey[p][0]
+	szz[] = -sxx[p]*tan(ang2[p])^2 - tey[p][1]/cos(ang2[p])^2
+	 
+	 
+	 killwaves/z  omega, E1, tey, ang1, ang2
+end function
+
+function OpticalCondExtract_Magn()
+	variable i, j, k
+	setdatafolder("root:")
+	variable num = (960.85-926.65)/(0.15)+1
+	string filename
+	Make/O/N=(num) omega
+	omega[] = 926.65 + p*0.15
+	Make/O/N=(num,2) tey
+	Make/O/N=(num) ang1, ang2, ang3
+	
+		filename = "Fit_"+num2str(960)+"to"+num2str(1300)+"_abs" //LV polarisation
+		wave joe = $filename		
+		tey[][0] = joe[x2pnt(joe,omega[p])]
+		
+		filename = "Fit_"+num2str(575)+"to"+num2str(939)+"_abs" //LCP polarisation
+		wave joe = $filename
+		tey[][1] = joe[x2pnt(joe,omega[p])]
+		filename = "ScatAng"+num2str(575)+"to"+num2str(815)
+		wave angles = $filename
+		ang1[] = angles[x2pnt(angles,omega[p])]
+		ang1[] *= pi/180
+		
+		filename = "Fit_"+num2str(1324)+"to"+num2str(1689)+"_abs" //RCP polarisation
+		wave joe = $filename
+		tey[][2] = joe[x2pnt(joe,omega[p])]
+		filename = "ScatAng"+num2str(1324)+"to"+num2str(1689)
+		wave angles = $filename
+		ang2[] = angles[x2pnt(angles,omega[p])]
+		ang2[] *= pi/180
+		
+		filename = "Fit_"+num2str(1713)+"to"+num2str(2044)+"_abs" //LH polarisation
+		wave joe = $filename
+		tey[][3] = joe[x2pnt(joe,omega[p])]
+		filename = "ScatAng"+num2str(1713)+"to"+num2str(2044)
+		wave angles = $filename
+		ang3[] = angles[x2pnt(angles,omega[p])]
+		ang3[] *= pi/180
+		
+	filename = "ImSigma"
+	filename += "_xx"
+	Duplicate/O ang1, $filename
+	wave sxx = $filename
+	filename = "ImSigma_zz"
+	Duplicate/O ang1, $filename
+	wave szz = $filename
+	filename = "ReSigma_zx"
+	Duplicate/O ang1, $filename
+	wave szx = $filename
+	filename = "ReSigma_yx"
+	Duplicate/O ang1, $filename
+	wave syx = $filename
+	Make/N=(4,4) M //conversion matrix
+	M[][] = 0
+	
+	for(i=0;i<num;i+=1)	//LH-3; LCP-1, RCP-2, LV-0
+		M[0][0] = -1
+		M[1][0] = -sin(ang3[i])^2
+		M[1][3] = -cos(ang3[i])^2
+		M[2][0] = -0.5*(1+sin(ang2[i])^2)
+		M[2][1] = -sin(ang2[i])
+		M[2][2] = -cos(ang2[i])
+		M[2][3] = -0.5*cos(ang2[i])^2
+		M[3][0] = -0.5*(1+sin(ang2[i])^2)
+		M[3][1] = sin(ang2[i])
+		M[3][2] = cos(ang2[i])
+		M[3][3] = -0.5*cos(ang2[i])^2
+		MatrixInverse /O M //inverting the matrix equation
+		sxx[i] = M[0][0]*tey[i][0]
+		syx[i] = M[1][0]*tey[i][0]+M[1][3]*tey[i][3]
+		szx[i] = M[2][0]*tey[i][0]+M[2][1]*tey[i][1]+M[2][2]*tey[i][2]+M[2][3]*tey[i][3]
+		szz[i] = M[3][0]*tey[i][0]+M[3][1]*tey[i][1]+M[3][2]*tey[i][2]+M[3][3]*tey[i][3]
+	 endfor
+	 
+	 killwaves/z  omega, E1, tey, ang1, ang2
+end function
+
+
+
+
+function RemoveWiggle(wiggletemp, E1, dE,latticepar,p1,p2)
+	wave  wiggletemp
+	variable E1, dE, latticepar, p1, p2
+	wave wavetoremove = $"Fit_"+num2str(p1)+"to"+num2str(p2)+"_x0"
+	wave error = $"Fit_"+num2str(p1)+"to"+num2str(p2)+"_x0Sigma"
+	linearize_to1(wiggletemp,917.5,979.9,0)
+	
+	Duplicate/O wavetoremove, data, energy, wave_fit
+	string filename = "RefIndex_Re"+num2str(p1)+"to"+num2str(p2)
+	wave output = $filename
+	
+	energy[] = E1 + 0.15*p
+	setscale/p x E1, dE, energy	
+	Duplicate/O wavetoremove, waveline
+	//linearize_to1(waveline, 925,979.9,1)
+	variable h=4.14e-15, c=3e8, i, j
+		Duplicate/O waveline, angles //angles in radians
+		angles[] = asin(h*c/2/energy[p]*waveline[p]/latticepar) //Seve [1]
+	
+	variable a = h*c/2/latticepar, delta = 4
+	
+	data[] = 1+0.5*(a/energy[p])^2-0.5*sin(angles[p])^2
+	setscale/p x E1, dE, data
+	Duplicate/O data, FitFunc, test
+	Redimension/N=(dimsize(data,0)+delta) test
+	test[dimsize(data,0),dimsize(data,0)+delta-1] = data[dimsize(data,0)-1]
+	for(i=0;i<dimsize(data,0);i+=1)
+		if(i>=dimsize(data,0)-delta)
+			FitFunc[i] = faverage(test, pnt2x(energy,i), pnt2x(energy,i+delta))
+		else
+			FitFunc[i] = faverage(data, pnt2x(energy,i), pnt2x(energy,i+delta))
+		endif
+	endfor
+	FitFunc[dimsize(data,0)-delta, dimsize(data,0)-1] = data[p]
+	wave_fit[] = asin(sqrt( (h*c/2/latticepar/energy[p])^2 + 2*(1-FitFunc[p]) ))
+	//---------------------------------------------
+		
+	variable chi2, chi2previous=1e10, temp, delE, E, eps, m
+	waveline[] = angles[p]
+	Duplicate/O wiggletemp, wig
+	//redimension/N=((979.9-917.5)/dE + 1) wig
+	//interpolate2/F=2 /N=((979.9-917.5)/dE + 1) /Y=wig wiggletemp
+	Duplicate/O wig, wiggle2
+	wiggle2[] = 0
+	setscale/i x 917.5, energy[dimsize(energy,0)-1], wiggle2
+		
+	make/O/N=(dimsize(wiggle2,0)) chi
+	make/O/N=(dimsize(wiggle2,0),dimsize(data,0)) wave1
+	setscale/i x 917.5, 979.9, wiggle2
+	setscale/p x E1, dE, data
+	
+	Duplicate/O angles, ang
+	Redimension/N=(dimsize(wiggle2,0)) ang
+	ang[] = 0
+	variable L = dimsize(wiggle2,0)-dimsize(angles,0)
+	ang[0,L-1] = angles[0]
+	for(i=L;i<dimsize(ang,0);i+=1)
+		ang[i] = angles[i-L]
+	endfor
+	
+	wiggle2[] = sin(ang[p])^2/cos(ang[p])/a*wig[p] //wiggle in angles
+	wiggle2[] *= 1.3
+	Duplicate/O data, Ref2
+	for(delE=0;delE<dimsize(wiggle2,0);delE+=1)	
+		chi2 = 0
+		data[] = waveline[p]
+		for(i=0;i<dimsize(energy,0);i+=1)	
+			data[i] -= wiggle2[mod(i+delE,dimsize(wiggle2,0))]
+			Ref2[i] = 1+0.5*(a/energy[i])^2-0.5*sin(data[i])^2 //From Angles to Refractive Index
+			//chi2 += (Ref2[i] - FitFunc[i])^2/FitFunc[i] //Comparising refractive Index, because angles show very low effect of wiggle
+			chi2 += (data[i]-error[i]-wave_fit[i])^2/wave_fit[i]
+			wave1[delE][i] = Ref2[i]
+		endfor
+		if(chi2<chi2previous)
+			temp = delE
+			chi2previous = chi2
+		endif
+		chi[delE] =  chi2
+	endfor
+	data[] = waveline[p]
+	temp = 59
+	for(i=0;i<dimsize(energy,0);i+=1)
+			data[i] -= wiggle2[mod(i+temp,dimsize(wiggle2,0))]
+			Ref2[i] = 1+0.5*(a/energy[i])^2-0.5*sin(data[i])^2 //From Angles to Refractive Index
+	endfor
+	print temp
+	output[] = Ref2[p]
+	killwaves/z  data, energy, Ref, wiggle2, angles
+	killwaves/z  ang, wig, dummy, W_sigma, W_coef, Ref2, waveline, wave_fit, test
+end function
+
+
+
+function KramersAnalysis()
+	Make/O/N=14 pnt
+	Make/O/N=8 E1, dE
+	pnt[] = {125,491,575,815,960,1300,1324,1689,1701,2044,1713,2044,2057,2590,2595,3118}
+	E1[] = {925,925,925,925.15,925,926.65,926.65,926.8}
+	dE[] = {0.15,0.15,0.15,0.15,0.15,0.15,0.1,0.1}
+	variable i, j
+	j=0
+	setdatafolder("root:")
+	for(i=0;i<16;i+=2)
+		string filename = "RefIndex_Im", realname
+		filename += num2str(pnt[i])+"to"+num2str(pnt[i+1])
+		wave joe = $filename
+		Duplicate/O joe, energy
+		energy[] = E1[j] + dE[j]*p
+		j+=1
+		KKtransform_extrapolated(joe, energy)
+		realname = "RefIndex_Re"
+		realname += num2str(pnt[i])+"to"+num2str(pnt[i+1])
+		wave jochen = $realname
+		filename += "_KK"
+		linearize_to1(jochen,E1[j],dE[j],1)
+		wave jochenKK = $filename
+		linearize_to1(jochenKK,E1[j],dE[j],1)
+		//display jochen, jochenKK
+	endfor
+	killwaves/z E1, dE, pnt
+end
+
+function MagneticDichroism(p1,p2,E1,p3,p4,E2)
+	variable p1,p2,p3,p4,E1,E2
+	string filename1 = "Fit_", filename2 = "Fit_"
+	filename1 += num2str(p1)+"to"+num2str(p2)+"_abs"
+	filename2 += num2str(p3)+"to"+num2str(p4)+"_abs"
+	setdatafolder("root:")
+	wave joe = $filename1
+	wave jochen = $filename2
+	filename1 = "Dichroism"+num2str(p1)+"_"+num2str(p3)
+	Duplicate/O joe, dummy1, test1
+	Duplicate/O jochen, dummy2, test2
+	Redimension/N=1000 dummy1, dummy2
+	interpolate2/F=1 /N=1000 /Y=dummy1 test1
+	interpolate2/F=1 /N=1000 /Y=dummy2 test2
+	Duplicate/O dummy1, energy
+	Duplicate/O dummy1, $filename1
+	wave dichro = $filename1
+	variable E = max(E1,E2), dE = (979.9-E)/999, i
+	energy[] = E + dE*p
+	
+	//Extracting backround
+	Duplicate/O joe,dummy
+	Make/O/N = 2, test1, test2, test3
+	Curvefit line kwCWave=test1 dummy1[0,185] /X=energy 
+	Curvefit line kwCWave=test2 dummy1[345,555] /X=energy 
+	Curvefit line kwCWave=test3 dummy1[700,999]  /X=energy 
+	dummy1[0,250] -= test1[1]*energy[p]+test1[0]
+	dummy1[251,620] -= test2[1]*energy[p]+test2[0]
+	dummy1[621,999] -= test3[1]*energy[p]+test3[0]
+	Curvefit line kwCWave=test1 dummy2[0,185] /X=energy 
+	Curvefit line kwCWave=test2 dummy2[345,555] /X=energy 
+	Curvefit line kwCWave=test3 dummy2[700,999]  /X=energy 
+	dummy2[0,250] -= test1[1]*energy[p]+test1[0]
+	dummy2[251,620] -= test2[1]*energy[p]+test2[0]
+	dummy2[621,999] -= test3[1]*energy[p]+test3[0]
+	killwaves/z test1, test2, test3, W_coef, W_sigma
+	
+	dichro[] = dummy1[x2pnt(dummy1,pnt2x(energy,p))] - dummy2[x2pnt(dummy2,pnt2x(energy,p))] 
+	killwaves/z test1, test2, dummy1, dummy2
+end
+
+
+
+
+
+
+
+function GetConductivityFromAll()
+	variable i, latticepar = 8.9e-10
+	make/N=14 numbers
+	numbers[] = {125,575,960,1324,1701,2057,2595,491,939,1300,1689,2044,2590,3118} // wave with dataset numbers
+	make/N=7 E1, dE
+	E1[] = {925,925,925.15,925,925,926.65,926.8}
+	dE[] = {0.15,0.15,0.15,0.15,0.15,0.1,0.1}
+	string filename
+	setdatafolder("root:")
+	wave wig = $"wiggle"
+	for(i=0;i<7;i+=1)
+		setdatafolder("root:"+num2str(numbers[i])+"to"+num2str(numbers[i+7]))
+		//ExtractFromFitMatrix(numbers[i+7]-numbers[i], E1[i], dE[i], numbers[i], numbers[i+7])
+		//RefractiveFromFit(numbers[i],numbers[i+7],E1[i], dE[i], latticepar)
+		filename = "Fit_"+num2str(numbers[i])+"to"+num2str(numbers[i+7])
+		//RemoveWiggle(wig,E1[i],dE[i],latticepar,numbers[i],numbers[i+7])
+		
+	endfor
+	killwaves/z numbers, E1, dE
+end function
+//Bibliography
+//[1] Determination of the Anomalous Scattering Factors in the Soft-X-ray Range using Diffraction
+//from a Multilayer,  L.Seve
+//[2] Real-part EXAFS from multilayer Bragg reflections, U.Staub
+//[3] X-ray interactions, B.L. Henke
+
+
+
+
+
+

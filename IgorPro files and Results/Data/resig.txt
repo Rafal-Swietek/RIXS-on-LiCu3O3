@@ -1,0 +1,29 @@
+
+Function ReSigmaFromDiffraction2(scatteringangles,latticepar)
+
+	Wave scatteringangles// Scattering angles in degree
+	variable latticepar
+	
+	String newName = NameOfWave(scatteringangles) + "_ReSig" // Compute output wave name
+	Duplicate/O scatteringangles, $newName // Create output wave
+	Wave ReSigma = $newName // Create wave reference for output wave
+
+	ReSigma[]=0
+	ReSigma[]=-6199.21*Sin(Pi*scatteringangles[p]/180)/(latticepar*pnt2x(scatteringangles,p))
+	ReSigma[]+=Sin(Pi*scatteringangles[p]/180)^2
+	
+end
+
+Function ReSigmaFromDiffraction22(scatteringangles, xdat,latticepar)
+
+	Wave scatteringangles, xdat// Scattering angles in degree
+	variable latticepar
+	
+	String newName = NameOfWave(scatteringangles) + "_ReSig" // Compute output wave name
+	Duplicate/O scatteringangles, $newName // Create output wave
+	Wave ReSigma = $newName // Create wave reference for output wave
+
+	ReSigma[]=0
+	ReSigma[]=-6199.21*Sin(scatteringangles[p]/2)/(latticepar*xdat[p])
+	ReSigma[]+=Sin(scatteringangles[p]/2)^2
+end

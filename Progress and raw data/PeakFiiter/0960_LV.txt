@@ -1,0 +1,64 @@
+Fit completed 09:33 Donnerstag, 22. August 2019
+Y data wave: root:mda_960to1300:XAS_960to1300nobackground
+Chi square: 0.10868
+Total fitted points: 341
+Multi-peak fit version 2.22
+Total Peak Area = 3.3443 +/- 0.024236
+
+Baseline	Type: Constant
+
+	y0 = 	0.0032401	 +/- 	0.0011155
+
+Peak 0	Type: Lorentzian
+
+	Location = 	938.05	 +/- 	0.0021033
+	Height = 	2.2553	 +/- 	0.013395
+	Area = 	2.5095	 +/- 	0.015636
+	FWHM = 	0.70837	 +/- 	0.0060952
+
+	Fit function parameters
+	Location =	938.05	+/-	0.0021033
+	FWHM =	0.70837	+/-	0.0060952
+	Area =	2.5095	+/-	0.015636
+
+Peak 1	Type: Gauss
+
+	Location = 	941.08	 +/- 	0.026467
+	Height = 	0.17844	 +/- 	0.010349
+	Area = 	0.1772	 +/- 	0.010504
+	FWHM = 	0.93292	 +/- 	0.062833
+
+	Fit function parameters
+	Location =	941.08	+/-	0.026467
+	Width =	0.56027	+/-	0.037735
+	Height =	0.17844	+/-	0.010349
+
+Peak 2	Type: ExpModGauss
+
+	Location = 	958.12
+	Height = 	0.53392
+	Area = 	0.62699	 +/- 	0.011083
+	FWHM = 	1.0286
+	Gauss Loc = 	958.4	 +/- 	0.018056
+	Gauss Height = 	0.78661	 +/- 	0.042717
+	Gauss FWHM = 	0.7488	 +/- 	0.03742
+	Exp Tau = 	-0.47637	 +/- 	0.035551
+
+	Fit function parameters
+	GaussX0 =	958.4	+/-	0.018056
+	GaussWidth =	0.31799	+/-	0.015891
+	Height =	0.78661	+/-	0.042717
+	ExpTau =	-0.47637	+/-	0.035551
+
+Peak 3	Type: Gauss
+
+	Location = 	961.18	 +/- 	0.15438
+	Height = 	0.02909	 +/- 	0.010465
+	Area = 	0.030567	 +/- 	0.010474
+	FWHM = 	0.98713	 +/- 	0.36663
+
+	Fit function parameters
+	Location =	961.18	+/-	0.15438
+	Width =	0.59283	+/-	0.22018
+	Height =	0.02909	+/-	0.010465
+

@@ -1,0 +1,347 @@
+#pragma rtGlobals=1		// Use modern global access method.
+
+
+Function ExtractFromFitMatrix(numberofpoints, E1, dE,p1,p2)
+
+variable numberofpoints, E1, dE, p1,p2
+
+variable fitparameter
+string filename = "root:mda_"+num2str(p1)+"to"+num2str(p2)
+setdatafolder(filename)
+for (fitparameter=0;fitparameter<=8;fitparameter+=1)
+filename ="Fit_"+num2str(p1)+"to"+num2str(p2)
+string foldername = "root:mda_"+num2str(p1)+"to"+num2str(p2)+":WMBatchCurveFitRuns:NewBatchCurveFit0"
+
+
+switch(fitparameter)												// numeric switch
+		case 0:
+			filename+="_y0"
+			break
+		case 1:
+			filename+="_A"
+			break
+		case 2:
+			filename+="_x0"
+			break
+		case 3:
+			filename+="_B"
+			break
+		case 4:
+			filename+="_Chi2"
+			break
+		case 5:
+			filename+="_yoSigma"
+			break
+		case 6:
+			filename+="_ASigma"
+			break
+		case 7:
+			filename+="_x0Sigma"
+			break
+		case 8:
+			filename+="_BSigma"
+			break
+endswitch
+//filename += "_norm"
+
+Make/O/N=(numberofpoints) $filename
+setscale/p x E1,dE, $filename
+
+
+wave dummy = $filename
+
+setdatafolder(foldername)
+wave WMBatchResultsMatrix
+dummy[]=0
+dummy[]=WMBatchResultsMatrix[p][fitparameter]
+foldername = "root:mda_"+num2str(p1)+"to"+num2str(p2)
+setdatafolder(foldername)
+endfor
+
+end
+
+
+Function ReSigmaFromDiffraction(scatteringangles,deltaNR,nonres)
+
+	Wave scatteringangles// Scattering angles in degree
+	variable deltaNR, nonres
+	String newName = NameOfWave(scatteringangles) + "_ReSig" // Compute output wave name
+	Duplicate/O scatteringangles, $newName // Create output wave
+	Wave ReSigma = $newName // Create wave reference for output wave
+
+	
+	ReSigma[]=0
+
+	ReSigma[]=Sin(Pi*scatteringangles[p]/180)^2-x/pnt2x(scatteringangles,nonres)* Csc(Pi*scatteringangles[nonres]/180)*Sin(Pi*scatteringangles[p]/180)^3
+	ReSigma[]+=deltaNR* (pnt2x(scatteringangles,nonres)^3/x^3* Csc(Pi*scatteringangles[p]/180)*Sin(Pi*scatteringangles[nonres]/180)-1)
+end
+
+Function ReSigmaFromDiffraction2(scatteringangles,latticepar)
+
+	Wave scatteringangles// Scattering angles in degree
+	variable latticepar
+	
+	String newName = NameOfWave(scatteringangles) + "_ReSig" // Compute output wave name
+	Duplicate/O scatteringangles, $newName // Create output wave
+	Wave ReSigma = $newName // Create wave reference for output wave
+
+	ReSigma[]=0
+	ReSigma[]=-6199.21*Sin(Pi*scatteringangles[p]/180)/(latticepar*pnt2x(scatteringangles,p))
+	ReSigma[]+=Sin(Pi*scatteringangles[p]/180)^2
+	
+end
+
+
+
+
+
+
+
+
+Function KKtransform1D(wavetotransform,emin,emax)
+
+	variable emin, emax
+	
+	Wave wavetotransform// Reference to the input wave received as parameter
+	String newName = NameOfWave(wavetotransform) + "_KK" // Compute output wave name
+	Duplicate/O wavetotransform, $newName // Create output wave
+	Wave wavetotransform = $newName // Create wave reference for output wave
+	
+	Duplicate/O wavetotransform, dummy
+
+	dummy[]=0
+	variable i, j,k
+	
+	for(k=0;k<Dimsize(wavetotransform,0);k+=1)
+	
+	for(i=0;i<Dimsize(wavetotransform,0);i+=1)
+	
+	
+	if(abs(i-k)>0.000001)
+	dummy[k]+=wavetotransform[i]* pnt2x(wavetotransform,i) /(pnt2x(wavetotransform,i) ^2-pnt2x(wavetotransform,k)^2)
+	
+	
+	endif
+	
+	
+	endfor
+	endfor
+	
+
+	wavetotransform[]=dummy[p]
+      killwaves/z maxima, dummy
+End
+
+
+
+
+
+
+Function KKtransform(wavetotransform,emin,emax)
+
+	variable emin, emax
+	
+	Wave wavetotransform// Reference to the input wave received as parameter
+	String newName = NameOfWave(wavetotransform) + "_KK" // Compute output wave name
+	Duplicate/O wavetotransform, $newName // Create output wave
+	Wave wavetotransform = $newName // Create wave reference for output wave
+	
+	Duplicate/O wavetotransform, dummy
+
+	dummy[][]=0
+	variable i, j,k
+	
+	for(k=0;k<Dimsize(wavetotransform,0);k+=1)
+	
+	for(i=emin;i<emax;i+=1)
+	for(j=emin;j<emax;j+=1)
+	
+	if(abs(i-j)>0.000001)
+	dummy[k][i]+=wavetotransform[k][j]/(j-i)
+	endif
+	
+	
+	endfor
+	endfor
+	endfor
+
+	wavetotransform[][]=dummy[p][q]
+      killwaves/z maxima, dummy
+End
+
+
+Function KKtransform2(wavetotransform,emin,emax)
+
+	variable emin, emax
+	
+	Wave wavetotransform// Reference to the input wave received as parameter
+	
+	String thetaName = NameOfWave( wavetotransform) + "_theta" // Compute output wave name
+	Duplicate/O wavetotransform, $thetaName // Create output wave
+	Wave/c thetawave = $thetaName // Create wave reference for output wave
+	redimension/c $thetaName
+	
+
+	String rName = NameOfWave( wavetotransform) + "_r" // Compute output wave name
+	Duplicate/O wavetotransform, $rName // Create output wave
+	Wave/c rwave = $rName // Create wave reference for output wave
+	redimension/c $rName
+
+	String eps1Name = NameOfWave( wavetotransform) + "_eps1" // Compute output wave name
+	Duplicate/O wavetotransform, $eps1Name // Create output wave
+	Wave eps1wave = $eps1Name // Create wave reference for output wave
+	
+	String eps2Name = NameOfWave( wavetotransform) + "_eps2" // Compute output wave name
+	Duplicate/O wavetotransform, $eps2Name // Create output wave
+	Wave eps2wave = $eps2Name // Create wave reference for output wave
+
+	//Duplicate/O wavetotransform, dummy
+
+	thetawave[][]=cmplx(0,0)
+	rwave[][]=cmplx(0,0)
+	eps1wave[][]=0
+	eps2wave[][]=0
+	
+	variable i, j,k
+	
+	for(k=0;k<Dimsize(wavetotransform,0);k+=1)
+		for(i=emin;i<emax;i+=1)
+			for(j=emin;j<emax;j+=1)
+				if(abs(i-j)>0.000001)
+					//check this formula!
+					thetawave[k][i]+=ln(  sqrt(  wavetotransform[k][j]  ))/((1/j)^2-(1/i)^2)/(j^2)
+				endif
+			endfor
+			
+			thetawave[k][i]/=i
+		endfor
+	endfor
+	
+	//here you can play with the sign: -1 and +1 give totally different results
+	thetawave[][]*=1
+	rwave[][emin,emax]=sqrt(wavetotransform[p][q])*exp(cmplx(0,1)*thetawave[p][q])
+	
+	eps1wave[][]=real((1-rwave[p][q])^2 / (1+rwave[p][q])^2)
+	eps2wave[][]=imag((1-rwave[p][q])^2 / (1+rwave[p][q])^2)
+
+	
+End
+
+
+
+Function ExtractFromFitMatrixD2(numberofpoints, E1, dE,p1,p2)
+
+variable numberofpoints, E1, dE, p1,p2
+
+variable fitparameter
+string filename = "root:mda_"+num2str(p1)+"to"+num2str(p2)
+setdatafolder(filename)
+for (fitparameter=0;fitparameter<=7;fitparameter+=1)
+filename ="Fit_"+num2str(p1)+"to"+num2str(p2)
+string foldername = "root:mda_"+num2str(p1)+"to"+num2str(p2)+":WMBatchCurveFitRuns:NewBatchCurveFit0"
+
+switch(fitparameter)												// numeric switch
+		case 0:
+			filename+="_abs"
+			break
+		case 3:
+			filename+="_absSigma"
+			break
+endswitch
+filename += "_norm"
+
+Make/O/N=(numberofpoints) $filename
+setscale/p x E1,dE, $filename
+
+
+wave dummy = $filename
+
+setdatafolder(foldername)
+wave WMBatchResultsMatrix
+dummy[]=0
+dummy[]=WMBatchResultsMatrix[p][fitparameter]
+foldername = "root:mda_"+num2str(p1)+"to"+num2str(p2)
+setdatafolder(foldername)
+
+endfor
+filename ="Fit_"+num2str(p1)+"to"+num2str(p2)
+ killwaves/z $filename
+end
+
+
+
+
+
+
+
+
+
+Function ExtractFromFitMatrixWiggle(numberofpoints, E1, dE, name)
+
+variable numberofpoints, E1, dE
+string name
+variable fitparameter
+//setdatafolder(num2str(p1)+"to"+(p2))
+for (fitparameter=0;fitparameter<=9;fitparameter+=1)
+string filename ="Fit_wiggle"+name
+
+switch(fitparameter)												// numeric switch
+		case 2:
+			filename+="_x0"
+			break
+		case 7:
+			filename+="_x0sigma"
+			break
+endswitch
+
+
+Make/O/N=(numberofpoints) $filename
+setscale/p x E1,dE, $filename
+
+
+wave dummy = $filename
+wave WMBatchResultsMatrix
+dummy[]=0
+dummy[]=WMBatchResultsMatrix[p][fitparameter]
+
+endfor
+
+end
+
+
+function joinWiggle(wiggle1o, wiggle1oerr, wiggle2o, wiggle2oerr)
+	wave wiggle1o, wiggle1oerr, wiggle2o, wiggle2oerr
+	variable maxi1, maxi2, mini, av
+	Duplicate/O wiggle1o, wiggle1
+	Duplicate/O wiggle1oerr, wiggle1err
+	Duplicate/O wiggle2o, wiggle2
+	Duplicate/O wiggle2oerr, wiggle2err
+	
+	maxi1 = WaveMax(wiggle1)
+	mini = WaveMin(wiggle1)
+	av = 0.5*(maxi1+mini)
+	maxi2 = WaveMax(wiggle2)
+	mini = WaveMin(wiggle2)
+	av -= 0.5*(maxi2+mini)
+	wiggle1[] -= av
+	Duplicate/O wiggle1, temp2
+	temp2[] = wiggle1[p]
+	wiggle1[] =0
+	Redimension/N=46 wiggle1
+	interpolate2/F=1/N=46 /Y = wiggle1 temp2
+	variable length = dimsize(wiggle1,0)+dimsize(wiggle2,0), i
+	Make/O/N=(length) wiggle
+	for(i=0;i<length;i+=1)
+		if( i<dimsize(wiggle1,0))
+			wiggle[i] = wiggle1[i]
+		else
+			wiggle[i] = wiggle2[i-dimsize(wiggle1,0)]
+		endif
+	endfor
+	setscale/i x 917.5, 979.9, wiggle
+	killwaves/z temp2, maxi1,maxi2,mini,av,wiggle1,wiggle1err,wiggle2,wiggle2err
+end
+
+function LoadDataa()
+
+end

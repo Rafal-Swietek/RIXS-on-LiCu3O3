@@ -1,0 +1,728 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.8.12)  22 OCT 2019 17:20
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**"RIXS on LiCu3O3.tex"
+(./RIXS on LiCu3O3.tex
+LaTeX2e <2018-12-01>
+(c:/texlive/2019/texmf-dist/tex/latex/revtex/revtex4-1.cls
+Document Class: revtex4-1 2010/07/25/20:33:00 4.1r (http://publish.aps.org/revt
+ex4/ for documentation)
+ Copyright (c) 2009 The American Physical Society.
+ mailto:revtex@aps.org
+ Licensed under the LPPL:
+http://www.ctan.org/tex-archive/macros/latex/base/lppl.txt
+ Arthur Ogawa <arthur_ogawa at sbcglobal dot net>
+ Based on work by David Carlisle <david at dcarlisle.demon.co.uk>.
+ltxutil[2010/07/25/20:33:00 4.1r utilities package (portions licensed from W. E
+. Baxter web at superscript.com)]
+LaTeX Info: Redefining \@centercr on input line 308.
+Class revtex4-1 Info: Repairing broken LaTeX eqnarray on input line 358.
+\eqncolsep=\skip41
+Class revtex4-1 Info: Repairing hyperref-unfriendly LaTeX definition of \mpfoot
+note on input line 433.
+Class revtex4-1 Info: Repairing broken LateX \@sect on input line 755.
+\intertabularlinepenalty=\count80
+\@tbpen=\count81
+\@arstrutbox@hline=\box27
+Class revtex4-1 Info: Repairing broken LaTeX \@xbitor on input line 1786.
+Class revtex4-1 Info: Making \typeout \long on input line 2046.
+ltxfront[2010/07/25/20:33:00 4.1r frontmatter package (AO,DPC)]
+\c@affil=\count82
+\c@collab=\count83
+\absbox=\box28
+ltxgrid[2010/07/25/20:33:00 4.1r page grid package (portions licensed from W. E
+. Baxter web at superscript.com)]
+\c@linecount=\count84
+\output@latex=\toks14
+\box@size@1=\box29
+\box@size@2=\box30
+\@protection@box=\box31
+\@topmark@saved=\toks15
+\footins@saved=\box32
+\footins@recovered=\box33
+\column@recovered=\box34
+\pagesofar=\box35
+\footsofar=\box36
+\pagegrid@col=\count85
+Class revtex4-1 Info: Overriding \@vspace, \@vspacer, \@no@pgbk, \@newline, and
+ \\  on input line 5578.
+\c@part=\count86
+\c@section=\count87
+\c@subsection=\count88
+\c@subsubsection=\count89
+\c@paragraph=\count90
+\c@subparagraph=\count91
+\abovecaptionskip=\skip42
+\belowcaptionskip=\skip43
+\c@figure=\count92
+\fbox@1=\box37
+\c@table=\count93
+\fbox@2=\box38
+\c@video=\count94
+\fbox@4=\box39
+\@bibdataout=\write3
+\widetext@top=\box40
+\widetext@bot=\box41
+
+Class revtex4-1 Warning: No Society specified, using default society aps.
+
+(c:/texlive/2019/texmf-dist/tex/latex/revtex/aps4-1.rtx
+File: aps4-1 2010/07/25/20:33:00 4.1r (http://publish.aps.org/revtex4/ for docu
+mentation)
+Class revtex4-1 Info: RevTeX society APS selected on input line 31.
+)
+
+Class revtex4-1 Warning: No journal specified, using default pra.
+
+Class revtex4-1 Info: APS journal PRA selected on input line 7545.
+
+Class revtex4-1 Warning: No type size specified, using default 10.
+
+(c:/texlive/2019/texmf-dist/tex/latex/revtex/aps10pt4-1.rtx
+File: aps10pt4-1 2010/07/25/20:33:00 4.1r (http://publish.aps.org/revtex4/ for 
+documentation)
+Class revtex4-1 Info: RevTeX pointsize 10pt selected on input line 30.
+)
+(c:/texlive/2019/texmf-dist/tex/latex/textcase/textcase.sty
+Package: textcase 2004/10/07 v0.07 Text only upper/lower case changing (DPC)
+)
+(c:/texlive/2019/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(c:/texlive/2019/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks16
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(c:/texlive/2019/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2018/12/01 v2.17b AMS math features
+\@mathmargin=\skip44
+
+For additional information on amsmath, use the `?' option.
+(c:/texlive/2019/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+
+(c:/texlive/2019/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks17
+\ex@=\dimen102
+)
+LaTeX Info: Redefining \text on input line 28.
+)
+(c:/texlive/2019/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen103
+)
+(c:/texlive/2019/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count95
+LaTeX Info: Redefining \frac on input line 223.
+\uproot@=\count96
+\leftroot@=\count97
+LaTeX Info: Redefining \overline on input line 385.
+\classnum@=\count98
+\DOTSCASE@=\count99
+LaTeX Info: Redefining \ldots on input line 482.
+LaTeX Info: Redefining \dots on input line 485.
+LaTeX Info: Redefining \cdots on input line 606.
+\Mathstrutbox@=\box42
+\strutbox@=\box43
+\big@size=\dimen104
+LaTeX Font Info:    Redeclaring font encoding OML on input line 729.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 730.
+\macc@depth=\count100
+\c@MaxMatrixCols=\count101
+\dotsspace@=\muskip10
+\c@parentequation=\count102
+\dspbrk@lvl=\count103
+\tag@help=\toks18
+\row@=\count104
+\column@=\count105
+\maxfields@=\count106
+\andhelp@=\toks19
+\eqnshift@=\dimen105
+\alignsep@=\dimen106
+\tagshift@=\dimen107
+\tagwidth@=\dimen108
+\totwidth@=\dimen109
+\lineht@=\dimen110
+\@envbody=\toks20
+\multlinegap=\skip45
+\multlinetaggap=\skip46
+\mathdisplay@stack=\toks21
+LaTeX Info: Redefining \[ on input line 2844.
+LaTeX Info: Redefining \] on input line 2845.
+)
+(c:/texlive/2019/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip11
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+(c:/texlive/2019/texmf-dist/tex/latex/natbib/natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip47
+\bibsep=\skip48
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count107
+)
+Class revtex4-1 Info: Repairing natbib's \BibitemShut on input line 7549.
+
+(c:/texlive/2019/texmf-dist/tex/latex/revtex/revsymb4-1.sty
+Package: revsymb4-1 2010/07/25/20:33:00 4.1r (http://publish.aps.org/revtex4/ f
+or documentation)
+LaTeX Info: Redefining \frak on input line 95.
+LaTeX Info: Redefining \Bbb on input line 111.
+LaTeX Info: Redefining \REV@mathfrak on input line 119.
+))
+(c:/texlive/2019/texmf-dist/tex/generic/ulem/ulem.sty
+\UL@box=\box44
+\UL@hyphenbox=\box45
+\UL@skip=\skip49
+\UL@hook=\toks22
+\UL@height=\dimen111
+\UL@pe=\count108
+\UL@pixel=\dimen112
+\ULC@box=\box46
+Package: ulem 2012/05/18
+\ULdepth=\dimen113
+)
+(c:/texlive/2019/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
+
+(c:/texlive/2019/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: pdftex.def on input line 147.
+
+(c:/texlive/2019/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+))
+(c:/texlive/2019/texmf-dist/tex/latex/graphics/epsfig.sty
+Package: epsfig 2017/06/25 v1.7b (e)psfig emulation (SPQR)
+
+(c:/texlive/2019/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+
+(c:/texlive/2019/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks23
+)
+(c:/texlive/2019/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+
+(c:/texlive/2019/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(c:/texlive/2019/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 99.
+)
+\Gin@req@height=\dimen114
+\Gin@req@width=\dimen115
+)
+\epsfxsize=\dimen116
+\epsfysize=\dimen117
+)
+(c:/texlive/2019/texmf-dist/tex/latex/psnfss/times.sty
+Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
+)
+(c:/texlive/2019/texmf-dist/tex/latex/tools/dcolumn.sty
+Package: dcolumn 2014/10/28 v1.06 decimal alignment package (DPC)
+
+(c:/texlive/2019/texmf-dist/tex/latex/tools/array.sty
+Package: array 2018/12/30 v2.4k Tabular extension package (FMi)
+\col@sep=\dimen118
+\ar@mcellbox=\box47
+\extrarowheight=\dimen119
+\NC@list=\toks24
+\extratabsurround=\skip50
+\backup@length=\skip51
+\ar@cellbox=\box48
+))
+(c:/texlive/2019/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2019/06/12 v6.88h Hypertext links for LaTeX
+
+(c:/texlive/2019/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
+
+
+(c:/texlive/2019/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
+Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+Package: intcalc 2016/05/16 v1.2 Expandable calculations with integers (HO)
+Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+Package: pdftexcmds 2019/07/25 v0.30 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+Package: pdfescape 2016/05/16 v1.14 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2016/05/16 v1.4 Expandable calculations on big integers (HO
+)
+Package: bitset 2016/05/16 v1.2 Handle bit-vector datatype (HO)
+Package: uniquecounter 2016/05/16 v1.3 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2016/05/16 v1.5 Let assignment for LaTeX macros (HO)
+Package: hopatch 2016/05/16 v1.3 Wrapper for package hooks (HO)
+Package: xcolor-patch 2016/05/16 xcolor patch
+Package: atveryend 2016/05/16 v1.9 Hooks at the very end of document (HO)
+Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
+Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
+Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
+)
+(c:/texlive/2019/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+(c:/texlive/2019/texmf-dist/tex/latex/oberdiek/auxhook.sty
+Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
+)
+(c:/texlive/2019/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+)
+\@linkdim=\dimen120
+\Hy@linkcounter=\count109
+\Hy@pagecounter=\count110
+
+(c:/texlive/2019/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2019/06/12 v6.88h Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+\Hy@SavedSpaceFactor=\count111
+
+(c:/texlive/2019/texmf-dist/tex/latex/latexconfig/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Option `colorlinks' set `false' on input line 4424.
+Package hyperref Info: Hyper figures OFF on input line 4550.
+Package hyperref Info: Link nesting OFF on input line 4555.
+Package hyperref Info: Hyper index ON on input line 4558.
+Package hyperref Info: Plain pages OFF on input line 4565.
+Package hyperref Info: Backreferencing OFF on input line 4570.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4803.
+LaTeX Info: Redefining \href on input line 5067.
+\c@Hy@tempcnt=\count112
+LaTeX Info: Redefining \url on input line 5156.
+\XeTeXLinkMargin=\dimen121
+\Fld@menulength=\count113
+\Field@Width=\dimen122
+\Fld@charsize=\dimen123
+Package hyperref Info: Hyper figures OFF on input line 6411.
+Package hyperref Info: Link nesting OFF on input line 6416.
+Package hyperref Info: Hyper index ON on input line 6419.
+Package hyperref Info: backreferencing OFF on input line 6426.
+Package hyperref Info: Link coloring OFF on input line 6431.
+Package hyperref Info: Link coloring with OCG OFF on input line 6436.
+Package hyperref Info: PDF/A mode OFF on input line 6441.
+LaTeX Info: Redefining \ref on input line 6481.
+LaTeX Info: Redefining \pageref on input line 6485.
+\Hy@abspage=\count114
+\c@Item=\count115
+\c@Hfootnote=\count116
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+
+(c:/texlive/2019/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2019/06/12 v6.88h Hyperref driver for pdfTeX
+\Fld@listcount=\count117
+\c@bookmark@seq@number=\count118
+
+(c:/texlive/2019/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
+Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
+)
+\Hy@SectionHShift=\skip52
+)
+(c:/texlive/2019/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+)
+Class revtex4-1 Info: Unrecognized array package. Please update this document c
+lass! (Proceeding with fingers crossed.) on input line 29.
+Class revtex4-1 Info: Robustifying \LaTeX's \boldmath command on input line 29.
+
+Class revtex4-1 Info: cite was not loaded (OK!) on input line 29.
+Class revtex4-1 Info: mcite was not loaded (OK!) on input line 29.
+Class revtex4-1 Info: multicol was not loaded (OK!) on input line 29.
+
+(./RIXS on LiCu3O3.aux)
+\openout1 = `"RIXS on LiCu3O3.aux"'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 29.
+ (c:/texlive/2019/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+) (c:/texlive/2019/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count119
+\scratchdimen=\dimen124
+\scratchbox=\box49
+\nofMPsegments=\count120
+\nofMParguments=\count121
+\everyMPshowfont=\toks25
+\MPscratchCnt=\count122
+\MPscratchDim=\dimen125
+\MPnumerator=\count123
+\makeMPintoPDFobject=\count124
+\everyMPtoPDFconversion=\toks26
+) (c:/texlive/2019/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+
+(c:/texlive/2019/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+\AtBeginShipoutBox=\box50
+Package hyperref Info: Link coloring OFF on input line 29.
+
+(c:/texlive/2019/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
+
+(c:/texlive/2019/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
+Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
+)
+\c@section@level=\count125
+)
+LaTeX Info: Redefining \ref on input line 29.
+LaTeX Info: Redefining \pageref on input line 29.
+LaTeX Info: Redefining \nameref on input line 29.
+
+(./RIXS on LiCu3O3.out) (./RIXS on LiCu3O3.out)
+\@outlinefile=\write4
+\openout4 = `"RIXS on LiCu3O3.out"'.
+
+Class revtex4-1 Info: Taking \maketitle back from hyperref on input line 29.
+\openout3 = `"RIXS on LiCu3O3Notes.bib"'.
+
+LaTeX Font Info:    Try loading font information for U+msa on input line 35.
+
+(c:/texlive/2019/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 35.
+
+(c:/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 37.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 37.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `subscript' on input line 37.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `subscript' on input line 37.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 37.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 39.
+<./Graphics/UnitCell.png, id=65, 423.08063pt x 336.50719pt>
+File: ./Graphics/UnitCell.png Graphic file (type png)
+<use ./Graphics/UnitCell.png>
+Package pdftex.def Info: ./Graphics/UnitCell.png  used on input line 50.
+(pdftex.def)             Requested size: 209.09953pt x 170.71782pt.
+[1{c:/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./Graphics/Un
+itCell.png>]
+
+pdfTeX warning: pdflatex.exe (file ./Graphics/RIXSprocess.pdf): PDF inclusion: 
+found PDF version <1.7>, but at most version <1.5> allowed
+<./Graphics/RIXSprocess.pdf, id=98, 596.2275pt x 402.00188pt>
+File: ./Graphics/RIXSprocess.pdf Graphic file (type pdf)
+<use ./Graphics/RIXSprocess.pdf>
+Package pdftex.def Info: ./Graphics/RIXSprocess.pdf  used on input line 76.
+(pdftex.def)             Requested size: 196.80116pt x 142.2608pt.
+<./Graphics/hmm.jpg, id=104, 247.92625pt x 204.765pt>
+File: ./Graphics/hmm.jpg Graphic file (type jpg)
+<use ./Graphics/hmm.jpg>
+Package pdftex.def Info: ./Graphics/hmm.jpg  used on input line 99.
+(pdftex.def)             Requested size: 122.99814pt x 71.13141pt.
+<./Graphics/./RIXS/LV(960).pdf, id=105, 483.8075pt x 284.06125pt>
+File: ./Graphics/./RIXS/LV(960).pdf Graphic file (type pdf)
+<use ./Graphics/./RIXS/LV(960).pdf>
+Package pdftex.def Info: ./Graphics/./RIXS/LV(960).pdf  used on input line 106.
+
+(pdftex.def)             Requested size: 246.00034pt x 102.431pt.
+<./Graphics/./RIXS/LV(960)norm.pdf, id=106, 483.8075pt x 284.06125pt>
+File: ./Graphics/./RIXS/LV(960)norm.pdf Graphic file (type pdf)
+<use ./Graphics/./RIXS/LV(960)norm.pdf>
+Package pdftex.def Info: ./Graphics/./RIXS/LV(960)norm.pdf  used on input line 
+110.
+(pdftex.def)             Requested size: 246.00034pt x 102.431pt.
+<./Graphics/./RIXS/LCP.pdf, id=107, 426.59375pt x 227.85126pt>
+File: ./Graphics/./RIXS/LCP.pdf Graphic file (type pdf)
+<use ./Graphics/./RIXS/LCP.pdf>
+Package pdftex.def Info: ./Graphics/./RIXS/LCP.pdf  used on input line 119.
+(pdftex.def)             Requested size: 110.69695pt x 79.66916pt.
+<./Graphics/./RIXS/RCP.pdf, id=108, 426.59375pt x 227.85126pt>
+File: ./Graphics/./RIXS/RCP.pdf Graphic file (type pdf)
+<use ./Graphics/./RIXS/RCP.pdf>
+Package pdftex.def Info: ./Graphics/./RIXS/RCP.pdf  used on input line 122.
+(pdftex.def)             Requested size: 110.69695pt x 79.66916pt.
+<./Graphics/./RIXS/LV.pdf, id=109, 426.59375pt x 227.85126pt>
+File: ./Graphics/./RIXS/LV.pdf Graphic file (type pdf)
+<use ./Graphics/./RIXS/LV.pdf>
+Package pdftex.def Info: ./Graphics/./RIXS/LV.pdf  used on input line 125.
+(pdftex.def)             Requested size: 110.69695pt x 79.66916pt.
+<./Graphics/./RIXS/LH.pdf, id=110, 426.59375pt x 227.85126pt>
+File: ./Graphics/./RIXS/LH.pdf Graphic file (type pdf)
+<use ./Graphics/./RIXS/LH.pdf>
+Package pdftex.def Info: ./Graphics/./RIXS/LH.pdf  used on input line 128.
+(pdftex.def)             Requested size: 110.69695pt x 79.66916pt.
+<./Graphics/./RIXS/LV2.pdf, id=111, 426.59375pt x 227.85126pt>
+File: ./Graphics/./RIXS/LV2.pdf Graphic file (type pdf)
+<use ./Graphics/./RIXS/LV2.pdf>
+Package pdftex.def Info: ./Graphics/./RIXS/LV2.pdf  used on input line 131.
+(pdftex.def)             Requested size: 110.69695pt x 79.66916pt.
+<./Graphics/./RIXS/RCP2.pdf, id=112, 426.59375pt x 227.85126pt>
+File: ./Graphics/./RIXS/RCP2.pdf Graphic file (type pdf)
+<use ./Graphics/./RIXS/RCP2.pdf>
+Package pdftex.def Info: ./Graphics/./RIXS/RCP2.pdf  used on input line 134.
+(pdftex.def)             Requested size: 110.69695pt x 79.66916pt.
+<./Graphics/amplitude.pdf, id=113, 426.59375pt x 284.06125pt>
+File: ./Graphics/amplitude.pdf Graphic file (type pdf)
+<use ./Graphics/amplitude.pdf>
+Package pdftex.def Info: ./Graphics/amplitude.pdf  used on input line 139.
+(pdftex.def)             Requested size: 110.69695pt x 76.82324pt.
+<./Graphics/width.pdf, id=114, 426.59375pt x 284.06125pt>
+File: ./Graphics/width.pdf Graphic file (type pdf)
+<use ./Graphics/width.pdf>
+Package pdftex.def Info: ./Graphics/width.pdf  used on input line 142.
+(pdftex.def)             Requested size: 110.69695pt x 76.82324pt.
+<./Graphics/position.pdf, id=115, 426.59375pt x 284.06125pt>
+File: ./Graphics/position.pdf Graphic file (type pdf)
+<use ./Graphics/position.pdf>
+Package pdftex.def Info: ./Graphics/position.pdf  used on input line 145.
+(pdftex.def)             Requested size: 110.69695pt x 76.82324pt.
+<./Graphics/ScatAng.pdf, id=116, 483.8075pt x 284.06125pt>
+File: ./Graphics/ScatAng.pdf Graphic file (type pdf)
+<use ./Graphics/ScatAng.pdf>
+Package pdftex.def Info: ./Graphics/ScatAng.pdf  used on input line 148.
+(pdftex.def)             Requested size: 110.69756pt x 76.82324pt.
+[2 <./Graphics/RIXSprocess.pdf> <./Graphics/hmm.jpg>] [3 <./Graphics/./RIXS/LV(
+960).pdf> <./Graphics/./RIXS/LV(960)norm.pdf> <./Graphics/./RIXS/LCP.pdf> <./Gr
+aphics/./RIXS/RCP.pdf> <./Graphics/./RIXS/LV.pdf> <./Graphics/./RIXS/LH.pdf> <.
+/Graphics/./RIXS/LV2.pdf> <./Graphics/./RIXS/RCP2.pdf> <./Graphics/amplitude.pd
+f> <./Graphics/width.pdf> <./Graphics/position.pdf> <./Graphics/ScatAng.pdf>]
+<./Graphics/RefIndRe.pdf, id=184, 483.8075pt x 284.06125pt>
+File: ./Graphics/RefIndRe.pdf Graphic file (type pdf)
+<use ./Graphics/RefIndRe.pdf>
+Package pdftex.def Info: ./Graphics/RefIndRe.pdf  used on input line 172.
+(pdftex.def)             Requested size: 221.40251pt x 85.35773pt.
+<./Graphics/RefIndIm.pdf, id=185, 483.8075pt x 284.06125pt>
+File: ./Graphics/RefIndIm.pdf Graphic file (type pdf)
+<use ./Graphics/RefIndIm.pdf>
+Package pdftex.def Info: ./Graphics/RefIndIm.pdf  used on input line 175.
+(pdftex.def)             Requested size: 221.40251pt x 85.35773pt.
+<./Graphics/ShirleyBack.pdf, id=191, 483.8075pt x 284.06125pt>
+File: ./Graphics/ShirleyBack.pdf Graphic file (type pdf)
+<use ./Graphics/ShirleyBack.pdf>
+Package pdftex.def Info: ./Graphics/ShirleyBack.pdf  used on input line 188.
+(pdftex.def)             Requested size: 221.40251pt x 99.58328pt.
+<./Graphics/TEY.pdf, id=192, 483.8075pt x 284.06125pt>
+File: ./Graphics/TEY.pdf Graphic file (type pdf)
+<use ./Graphics/TEY.pdf>
+Package pdftex.def Info: ./Graphics/TEY.pdf  used on input line 192.
+(pdftex.def)             Requested size: 221.40251pt x 99.58328pt.
+
+[4 <./Graphics/RefIndRe.pdf> <./Graphics/RefIndIm.pdf> <./Graphics/ShirleyBack.
+pdf> <./Graphics/TEY.pdf>]
+<./Graphics/OptCond.pdf, id=225, 822.07124pt x 584.1825pt>
+File: ./Graphics/OptCond.pdf Graphic file (type pdf)
+<use ./Graphics/OptCond.pdf>
+Package pdftex.def Info: ./Graphics/OptCond.pdf  used on input line 230.
+(pdftex.def)             Requested size: 233.69063pt x 199.17207pt.
+<./Graphics/DielTens.pdf, id=226, 822.07124pt x 583.17876pt>
+File: ./Graphics/DielTens.pdf Graphic file (type pdf)
+<use ./Graphics/DielTens.pdf>
+Package pdftex.def Info: ./Graphics/DielTens.pdf  used on input line 234.
+(pdftex.def)             Requested size: 233.69063pt x 199.16801pt.
+<./Graphics/./KKT/KKreLV_edge.pdf, id=236, 483.8075pt x 284.06125pt>
+File: ./Graphics/./KKT/KKreLV_edge.pdf Graphic file (type pdf)
+<use ./Graphics/./KKT/KKreLV_edge.pdf>
+Package pdftex.def Info: ./Graphics/./KKT/KKreLV_edge.pdf  used on input line 2
+66.
+(pdftex.def)             Requested size: 110.69756pt x 71.13216pt.
+<./Graphics/./KKT/KKreLV.pdf, id=237, 483.8075pt x 284.06125pt>
+File: ./Graphics/./KKT/KKreLV.pdf Graphic file (type pdf)
+<use ./Graphics/./KKT/KKreLV.pdf>
+Package pdftex.def Info: ./Graphics/./KKT/KKreLV.pdf  used on input line 269.
+(pdftex.def)             Requested size: 110.69756pt x 71.13216pt.
+<./Graphics/./KKT/KKimLV_edge.pdf, id=238, 483.8075pt x 284.06125pt>
+File: ./Graphics/./KKT/KKimLV_edge.pdf Graphic file (type pdf)
+<use ./Graphics/./KKT/KKimLV_edge.pdf>
+Package pdftex.def Info: ./Graphics/./KKT/KKimLV_edge.pdf  used on input line 2
+72.
+(pdftex.def)             Requested size: 110.69756pt x 71.13216pt.
+<./Graphics/./KKT/KKimLV.pdf, id=239, 483.8075pt x 284.06125pt>
+File: ./Graphics/./KKT/KKimLV.pdf Graphic file (type pdf)
+<use ./Graphics/./KKT/KKimLV.pdf>
+Package pdftex.def Info: ./Graphics/./KKT/KKimLV.pdf  used on input line 275.
+(pdftex.def)             Requested size: 110.69756pt x 71.13216pt.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 295.
+
+
+LaTeX Warning: Reference `polarization' on page 5 undefined on input line 295.
+
+[5]
+
+Package natbib Warning: Citation `' on page 6 undefined on input line 319.
+
+
+Package natbib Warning: Citation `' on page 6 undefined on input line 319.
+
+
+Underfull \hbox (badness 1009) in paragraph at lines 326--327
+[]\OT1/ptm/m/n/10 To de-ter-mine the wave vec-tors $\OT1/cmr/bx/n/10 k[]$\OT1/p
+tm/m/n/10 ($\OT1/cmr/bx/n/10 k[]$\OT1/ptm/m/n/10 ) of the in-ci-
+ []
+
+[6 <./Graphics/OptCond.pdf> <./Graphics/DielTens.pdf> <./Graphics/./KKT/KKreLV_
+edge.pdf> <./Graphics/./KKT/KKreLV.pdf> <./Graphics/./KKT/KKimLV_edge.pdf> <./G
+raphics/./KKT/KKimLV.pdf>] [7]
+Underfull \hbox (badness 2173) in paragraph at lines 503--506
+ \OT1/ptm/m/it/9 Kramers{Kronig Re-la-tions in Op-ti-cal Ma-te-ri-als Re-search
+
+ []
+
+
+Underfull \hbox (badness 1033) in paragraph at lines 513--516
+ []\OT1/ptm/m/n/9 Julien Lev-al-lois, Iev-geniia Nedoliuk, Iris Crassee, Alexey
+
+ []
+
+
+Underfull \hbox (badness 6477) in paragraph at lines 513--516
+ \OT1/ptm/m/n/9 B. Kuz-menko \OT1/ptm/m/it/9 Magneto-optical Kramers-Kronig ana
+l-y-sis
+ []
+
+
+Underfull \hbox (badness 5592) in paragraph at lines 518--522
+ []\OT1/ptm/m/n/9 C. A. Emeis, L. J. Oost-er-hoff and Gonda de Vries
+ []
+
+
+Underfull \hbox (badness 4416) in paragraph at lines 518--522
+ \OT1/ptm/m/it/9 Nu-mer-i-cal Eval-u-a-tion of Kramers-Kronig Re-la-tions \OT1/
+ptm/m/n/9 doi:
+ []
+
+
+Underfull \hbox (badness 4927) in paragraph at lines 524--529
+ []\OT1/ptm/m/n/9 Josep Llosa and Francesc Sal-vat \OT1/ptm/m/it/9 Kramers-Kron
+ig re-la-
+ []
+
+
+Underfull \hbox (badness 1688) in paragraph at lines 535--538
+ []\OT1/ptm/m/n/9 R. Starke, G. A. H. Schoberb, R. Wirnataa, J. Ko-r-tusa
+ []
+
+
+Underfull \hbox (badness 2065) in paragraph at lines 535--538
+ \OT1/ptm/m/it/9 Wavevector-dependent op-ti-cal prop-er-ties from wavevector-
+ []
+
+No file "RIXS on LiCu3O3".bbl.
+
+Package natbib Warning: There were undefined citations.
+
+[8]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 563.
+ (./RIXS on LiCu3O3.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 563.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 563.
+
+
+Package rerunfilecheck Warning: File `"RIXS on LiCu3O3".out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `"RIXS on LiCu3O3".out':
+(rerunfilecheck)             Before: 67F03DEB67FE6F78D13AB335C9A8874E;893
+(rerunfilecheck)             After:  8EEB6ABE81D332C0E8CF2CCCF48FD7C0;879.
+
+LaTeX Warning: There were undefined references.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 8334 strings out of 492609
+ 117994 string characters out of 6132818
+ 263900 words of memory out of 5000000
+ 12034 multiletter control sequences out of 15000+600000
+ 28928 words of font info for 76 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 34i,22n,30p,1215b,492s stack positions out of 5000i,500n,10000p,200000b,80000s
+{c:/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2019/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2019/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2019/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmmi12.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmmi5.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pf
+b><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texl
+ive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb><c:/texlive/2019/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb><c:/texlive/2019/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2019/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr6.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmr7.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><
+c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><c:/texlive/
+2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2019/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/texlive/2019/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2019/texmf-dist/fonts/type1/p
+ublic/amsfonts/symbols/msam10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/publi
+c/amsfonts/symbols/msbm10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/times
+/utmb8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/te
+xlive/2019/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on "RIXS on LiCu3O3.pdf" (8 pages, 2878888 bytes).
+PDF statistics:
+ 406 PDF objects out of 1000 (max. 8388607)
+ 332 compressed objects within 4 object streams
+ 79 named destinations out of 1000 (max. 500000)
+ 238 words of extra memory for PDF output out of 10000 (max. 10000000)
+
